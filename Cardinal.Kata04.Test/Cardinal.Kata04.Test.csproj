@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FootballFileReaderTests.cs" />
     <Compile Include="WeatherFileReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,12 +59,6 @@
       <Project>{ddc9b969-85b1-42e6-9a17-59e14eb3f401}</Project>
       <Name>Cardinal.Kata04</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Cardinal.Kata04\weather.dat">
-      <Link>weather.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

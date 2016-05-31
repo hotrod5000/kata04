@@ -16,7 +16,18 @@ namespace Cardinal.Kata04.Console
             System.Console.WriteLine("Day with minimum spread is day {0} with a spread of {1}",
                                                                                 minSpread.Day,
                                                                                 minSpread.Max - minSpread.Min);
+            var minSpreadFootballTeam = GetMinSpreadFootball();
+            System.Console.WriteLine("Team with minimum spread is {0} with a spread of {1}",
+                                                                                minSpreadFootballTeam.TeamName,
+                                                                                Math.Abs(minSpreadFootballTeam.Against - minSpreadFootballTeam.For));
             System.Console.ReadKey();
+            
+        }
+        static FootballStats GetMinSpreadFootball()
+        {
+            var reader = new FootballFileReader();
+            var stats = reader.ReadFootballStatsFromFile("football.dat");
+            return stats.OrderBy(x => Math.Abs(x.For - x.Against)).First();
             
         }
     }
