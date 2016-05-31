@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileReader.cs" />
     <Compile Include="FootballFileReader.cs" />
     <Compile Include="FootballStats.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="WeatherFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeatherStats.cs" />

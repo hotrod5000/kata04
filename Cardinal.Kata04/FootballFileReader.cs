@@ -13,7 +13,7 @@ namespace Cardinal.Kata04
         {
             var lines = File.ReadAllLines(filePath);
 
-            return ProcessFootballStats(lines.Skip(1).Where(x => !x.TrimStart().StartsWith("-"))); //skip first line and line
+            return ProcessFootballStats(lines.Skip(1).Where(x => !x.TrimStart().StartsWith("-"))); //skip first line and lines starting with "-"
         }
 
         public List<FootballStats> ProcessFootballStats(IEnumerable<string> lines)

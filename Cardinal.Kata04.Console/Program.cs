@@ -10,25 +10,42 @@ namespace Cardinal.Kata04.Console
     {
         static void Main(string[] args)
         {
-            var reader = new WeatherFileReader();
-            var stats = reader.ReadWeatherStatsFromFile("weather.dat");
-            var minSpread = stats.OrderBy(x => x.Max - x.Min).First();
+
+            var footballStats = GetMinSpreadFootball();
+            var weatherStats = GetMinSpreadWeather();
             System.Console.WriteLine("Day with minimum spread is day {0} with a spread of {1}",
-                                                                                minSpread.Day,
-                                                                                minSpread.Max - minSpread.Min);
-            var minSpreadFootballTeam = GetMinSpreadFootball();
+                                                                                weatherStats.Id,
+                                                                                Math.Abs(weatherStats.Value1 - weatherStats.Value2));
             System.Console.WriteLine("Team with minimum spread is {0} with a spread of {1}",
-                                                                                minSpreadFootballTeam.TeamName,
-                                                                                Math.Abs(minSpreadFootballTeam.Against - minSpreadFootballTeam.For));
+                                                                                footballStats.Id,
+                                                                                Math.Abs(footballStats.Value1 - footballStats.Value2));
             System.Console.ReadKey();
             
         }
-        static FootballStats GetMinSpreadFootball()
+        static Stats GetMinSpreadFootball()
         {
-            var reader = new FootballFileReader();
-            var stats = reader.ReadFootballStatsFromFile("football.dat");
-            return stats.OrderBy(x => Math.Abs(x.For - x.Against)).First();
+            var fileReader = new FileReader("football.dat",
+                                        new Tuple<int, int>(7, 16),
+                                        new Tuple<int, int>(43, 2),
+                                        new Tuple<int, int>(50, 2),
+                                        1,
+                                        "-");
+            var stats = fileReader.ReadStatsFromFile();
+            return stats.OrderBy(x => Math.Abs(x.Value1 - x.Value2)).First();
             
         }
+        static Stats GetMinSpreadWeather()
+        {
+            var fileReader = new FileReader("weather.dat",
+                                        new Tuple<int, int>(0, 4),
+                                        new Tuple<int, int>(6, 2),
+                                        new Tuple<int, int>(12, 2),
+                                        2,
+                                        "m");
+            var stats = fileReader.ReadStatsFromFile();
+            return stats.OrderBy(x => Math.Abs(x.Value1 - x.Value2)).First();
+
+        }
+
     }
 }
